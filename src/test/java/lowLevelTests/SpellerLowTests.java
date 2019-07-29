@@ -1,5 +1,13 @@
 package lowLevelTests;
 
+import static io.restassured.RestAssured.given;
+import static java.util.Arrays.asList;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.hasSize;
+import static service.URI.GET_CHECK_TEXT;
+import static service.URI.GET_CHECK_TEXTS;
+import static service.URI.PARAM_KEY;
+
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -9,12 +17,6 @@ import org.testng.annotations.Test;
 import utils.FileUtils;
 
 import java.util.Properties;
-
-import static io.restassured.RestAssured.given;
-import static java.util.Arrays.asList;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.hasSize;
-import static service.URI.*;
 
 public class SpellerLowTests {
 
@@ -27,6 +29,9 @@ public class SpellerLowTests {
                 .addFilter(new ResponseLoggingFilter()).build();
     }
 
+    //todo перепиши этот тест на без использования низкоуровнвых проверок. Используй предефайненный объект SpellerDto для проверки ожидаемого результата
+    // перепиши и следующий тест
+    //объедини их через DataProvider м почувствуй разницу :)
     @Test
     public void checkRequestTextWithError() {
         request();
