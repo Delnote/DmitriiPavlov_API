@@ -12,7 +12,7 @@ public class SpellerSteps {
 		return
 				new Gson().fromJson(
 						new SpellerService()
-								.checkText(GET_CHECK_TEXT, textToCheck)
+								.getTypeOfTextToCheck(GET_CHECK_TEXT, textToCheck)
 								.getBody().asString(), SpellerDto[].class);
 	}
 
@@ -20,7 +20,7 @@ public class SpellerSteps {
 		return
 				new Gson().fromJson(
 						new SpellerService()
-								.checkText(GET_CHECK_TEXTS, textToCheck)
+								.getTypeOfTextToCheck(GET_CHECK_TEXTS, textToCheck)
 								.getBody().asString(), SpellerDto[][].class);
 	}
 }
