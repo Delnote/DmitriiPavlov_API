@@ -17,6 +17,7 @@ public class SpellerService {
 	//todo speller.yandex.net почему в коде?
 	// fixed
 	public SpellerService() {
+		fileUtils.readSpellerPropertiesFromFile();
 		REQUEST_SPECIFICATION = new RequestSpecBuilder()
 				.setBaseUri(fileUtils.getDomain())
 				.addFilter(new RequestLoggingFilter())

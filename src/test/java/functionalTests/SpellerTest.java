@@ -1,8 +1,5 @@
 package functionalTests;
 
-import static java.util.Arrays.asList;
-import static org.testng.Assert.assertTrue;
-
 import dataProviders.DataProviders;
 import dto.SpellerDto;
 import org.testng.annotations.Test;
@@ -10,6 +7,8 @@ import service.SpellerAssertions;
 import service.SpellerSteps;
 
 import java.util.Arrays;
+
+import static org.testng.Assert.assertTrue;
 
 public class SpellerTest {
 
@@ -19,11 +18,7 @@ public class SpellerTest {
     void checkText(String testText, String textToCheck) {
 
         SpellerDto[] spellerText = new SpellerSteps().checkText(testText);
-        SpellerAssertions spellerAssertions = new SpellerAssertions(spellerText);
-
-
-        assertTrue(spellerText[0].getS().contains(textToCheck));
-        spellerAssertions.verifyWordsList(spellerText);
+        new SpellerAssertions(spellerText).verifyWordsList(textToCheck);
     }
 
     @Test(dataProvider = "textsTestData", dataProviderClass = DataProviders.class)

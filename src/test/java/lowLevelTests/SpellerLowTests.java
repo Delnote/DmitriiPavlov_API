@@ -6,6 +6,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
+import lombok.experimental.Accessors;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import service.SpellerSteps;
@@ -21,10 +22,11 @@ import static service.URI.GET_CHECK_TEXT;
 public class SpellerLowTests {
 
     private RequestSpecification REQUEST_SPECIFICATION;
-    FileUtils fileUtils = new FileUtils();
+    private FileUtils fileUtils = new FileUtils();
 
 
     public void request() {
+        fileUtils.readSpellerPropertiesFromFile();
         REQUEST_SPECIFICATION = new RequestSpecBuilder()
                 .addFilter(new RequestLoggingFilter())
                 .addFilter(new ResponseLoggingFilter()).build();
@@ -37,20 +39,11 @@ public class SpellerLowTests {
     // fixed.
 
     @Test(dataProvider = "singleWordDataToCheck", dataProviderClass = DataProviders.class)
-    public void newSimpleTest(String requestText, String word, List<String> s, int code, int pos, int col, int len, int row) {
+    public void newSimpleTest(String requestText, SpellerDto[] spellerDtoDataCheck) {
 
         SpellerDto[] spellerDto = new SpellerSteps().checkText(requestText);
 
-        SpellerDto[] newSpellerDto = {new SpellerDto()};
-        newSpellerDto[0].setWord(word);
-        newSpellerDto[0].setS(s);
-        newSpellerDto[0].setCode(code);
-        newSpellerDto[0].setPos(pos);
-        newSpellerDto[0].setRow(row);
-        newSpellerDto[0].setCol(col);
-        newSpellerDto[0].setLen(len);
-
-        assertEquals(spellerDto, newSpellerDto);
+        assertEquals(spellerDto, spellerDtoDataCheck);
     }
 
     @Test

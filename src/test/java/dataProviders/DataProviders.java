@@ -1,5 +1,6 @@
 package dataProviders;
 
+import dto.SpellerDto;
 import org.testng.annotations.DataProvider;
 
 import static java.util.Arrays.asList;
@@ -31,9 +32,9 @@ public class DataProviders {
     @DataProvider
     public Object[][] singleWordDataToCheck() {
         return new Object[][] {
-                {"the+weatther+is+fine", "weatther", asList("weather", "wheather"), 1, 4, 4, 8, 0},
-                {"exa ple" , "exa ple", asList("example", "exam ple", "exa mple", "exaple"), 1, 0, 0, 7, 0},
-                {"comp8ter" , "comp8ter", asList("computer", "computed", "compyter"), 1, 0, 0, 8, 0}
+                {"the+weatther+is+fine", new SpellerDto(1, 4, 0, 4, 8, "weatther", asList("weather", "wheather"))},
+                {"exa ple", new SpellerDto(1, 0, 0, 0, 7, "exa ple", asList("example", "exam ple", "exa mple", "exaple"))},
+                {"comp8ter", new SpellerDto(1, 0, 0, 0, 8, "comp8ter", asList("computer", "computed", "compyter"))}
         };
     }
 
