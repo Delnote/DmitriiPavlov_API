@@ -14,8 +14,6 @@ public class FileUtils {
     private String domain;
     private String paramKey;
 
-//todo тут нет еще методов, которые бы помгали выгребать конкретную пропертю. Каждый раз при получении проперти читать файл - это неправильно.
-// fixed
     public void readSpellerPropertiesFromFile() {
 
         try (FileInputStream fis = new FileInputStream(SPELLER_PROPERTY_PATH.getName())) {

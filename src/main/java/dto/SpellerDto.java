@@ -1,6 +1,7 @@
 package dto;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@Accessors(chain = true)
 public class SpellerDto {
 
     private int code;
